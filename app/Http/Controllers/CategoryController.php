@@ -42,7 +42,24 @@ class CategoryController extends Controller
         return response()->json(new CategoryResource($category), 201);
     }
     
+    public function update(CategoryRequest $request, $id)
+    {
+        try {
+            $category = $this->categoryService->update($id, $request->validated());
+            return response()->json(new CategoryResource($category));
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+    }
     
-
+    public function destroy($id)
+    {
+        try {
+            $this->categoryService->delete($id);
+            return response()->json(['message' => 'Category deleted successfully']);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+    }
 
 }
