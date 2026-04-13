@@ -7,6 +7,7 @@ use App\Http\Resources\CategoryResource;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Http\Requests\CategoryRequest;  
 
+
 class CategoryController extends Controller
 {
     //

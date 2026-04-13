@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class WarehouseRequest extends FormRequest
@@ -12,7 +12,7 @@ class WarehouseRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,10 @@ class WarehouseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255|unique:warehouses,name' . $this->route('warehouse'),
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'addrerss' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
         ];
     }
 }
