@@ -7,7 +7,7 @@ use Illuminate\Validation\ValidationException;
 
 class WarehouseProductRepository
 {
-    public function getWarehouseProduct(int $warehouseId, int $productId): ?WarehouseProduct
+    public function getWarehouseAndProduct(int $warehouseId, int $productId): ?WarehouseProduct
     {
         return WarehouseProduct::where('warehouse_id', $warehouseId)
             ->where('product_id', $productId)
@@ -16,7 +16,7 @@ class WarehouseProductRepository
 
     public function updateStock(int $warehouseId, int $productId, int $stock): WarehouseProduct
     {
-        $warehouseProduct = $this->getWarehouseProduct($warehouseId, $productId);
+        $warehouseProduct = $this->getWarehouseAndProduct($warehouseId, $productId);
 
         if (!$warehouseProduct) {
             throw ValidationException::withMessages([
