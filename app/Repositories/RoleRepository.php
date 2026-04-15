@@ -40,5 +40,4 @@ class RoleRepository
         $role->delete();
     }
 
-
 }

@@ -12,7 +12,7 @@ class UserRoleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,8 @@ class UserRoleRequest extends FormRequest
     {
         return [
             //
+            ['userId' => 'required|integer|exists:users,id'],
+            ['roleId' => 'required|integer|exists:roles,id'],   
         ];
     }
 }
