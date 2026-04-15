@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+
 
 class UserRequest extends FormRequest
 {
@@ -12,7 +12,7 @@ class UserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,11 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $this->route('id'),
+            'password' => $this->isMethod('post') ? 'required|string|min:8' : 'nullable|string|min:8',
+            'phone' => 'required|string|max:20',
+            'photo' => 'required|image|max:2048|mimes:jpeg,png,jpg,gif,svg',
         ];
     }
 }
