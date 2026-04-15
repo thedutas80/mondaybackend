@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductRequest extends FormRequest
@@ -12,7 +12,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,12 @@ class ProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255|unique:products,name,' . $this->route('id'),
+            'thumbnail' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
+            'about' => 'required|string',
+            'price' => 'required|integer|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'is_popular' => 'boolean',
         ];
     }
 }
