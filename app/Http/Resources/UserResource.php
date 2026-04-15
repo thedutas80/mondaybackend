@@ -23,6 +23,7 @@ class UserResource extends JsonResource
             'phone' => $this->phone,
             'roles' => $this->roles->pluck('name'),
             'photo' => $this->photo ? asset('storage/' . $this->photo) : null,
+            'merchants' =>new MerchantResource($this->merchants),
         ];
     }
 }
