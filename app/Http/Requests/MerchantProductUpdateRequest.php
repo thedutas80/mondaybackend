@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class MerchantProductUpdateRequest extends FormRequest
@@ -12,7 +12,7 @@ class MerchantProductUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
