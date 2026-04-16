@@ -6,7 +6,6 @@ use App\Repositories\CategoryRepository;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-
 class CategoryService
 {
     private CategoryRepository $categoryRepository;
@@ -34,6 +33,7 @@ class CategoryService
 
         return $this->categoryRepository->create($data);
     }
+
 
     public function update(int $id, array $data)
     {
@@ -74,8 +74,4 @@ class CategoryService
             Storage::disk('public')->delete($relativePath);
         }
     }
-
-
-
-
 }

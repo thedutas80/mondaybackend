@@ -61,7 +61,7 @@ class MerchantProductService
         });
     }
 
-    public function UpdateStock(int $merchantId, int $productId, int $newStock, int $warehouseid = null)
+    public function UpdateStock(int $merchantId, int $productId, int $newStock, int $warehouseid)
     {
         return DB::transaction(function () use ($merchantId, $productId, $newStock, $warehouseid) {
 
