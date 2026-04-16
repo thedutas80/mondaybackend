@@ -56,10 +56,10 @@ class TransactionRepository
         }
     }
 
-    public function getTransactionByMerchantId($merchantId)
+    public function getTransactionByMerchant($merchantId)
     {
         return Transaction::where('merchant_id', $merchantId)
-        ->select(['id','name','phone','merchant_id', 'grand_total', 'created_at'])
+        ->select(['*'])
         ->with(['TransactionProducts.Product','Merchant.keeper'])
         ->get();
     }   
