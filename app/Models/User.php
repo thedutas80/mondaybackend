@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasRoles;
+    use HasFactory, Notifiable, HasRoles, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -52,18 +53,17 @@ class User extends Authenticatable
     }
 
 
-            public function getPhotoAttribute($value)
+    public function getPhotoAttribute($value)
     {
         if (!$value) {
             return null;
         }
 
         return url(Storage::url($value));
-
     }
 
     public function merchants()
     {
-        return $this->hasOne(Merchant::class,'keeper_id', 'id');
+        return $this->hasOne(Merchant::class, 'keeper_id', 'id');
     }
 }

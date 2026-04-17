@@ -23,10 +23,10 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:categories,name' . $this->route('category'),
+            'name' => 'required|string|max:255|unique:categories,name,' . $this->route('category'),
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'tagline' => 'required|string|max:255',
-            
+
         ];
     }
 }

@@ -1,20 +1,21 @@
 <?php
 
 namespace App\Repositories;
+
 use App\Models\Product;
 
-class ProductRepository 
+class ProductRepository
 {
     //
 
     public function getAll(array $fields)
     {
-        return Product::select($fields)->latest()->paginate(10)->with('category');
+        return Product::select($fields)->with('category')->latest()->paginate(10);
     }
 
     public function getById($id, array $fields)
     {
-        return Product::select($fields)->findOrFail($id)->with('category');
+        return Product::select($fields)->with('category')->findOrFail($id);
     }
 
     public function create(array $data)
@@ -29,14 +30,9 @@ class ProductRepository
         return $product;
     }
 
-        public function delete(int $id)
+    public function delete(int $id)
     {
         $product = Product::findOrFail($id);
         $product->delete();
-
     }
-
-
 }
-
-?>

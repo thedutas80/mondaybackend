@@ -12,14 +12,14 @@ class Category extends Model
     //
     use SoftDeletes;
     protected $fillable = [
-    'name',
-    'photo',
-    'tagline'
+        'name',
+        'photo',
+        'tagline'
     ];
 
 
 
-public function products()
+    public function products()
     {
         return $this->hasMany(Product::class);
     }
@@ -31,7 +31,5 @@ public function products()
         }
 
         return url(Storage::url($value));
-
     }
-
 }
