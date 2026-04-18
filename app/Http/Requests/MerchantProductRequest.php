@@ -25,7 +25,7 @@ class MerchantProductRequest extends FormRequest
         return [
             //
 
-           'productId' => 'required|exists:products,id',
+            'productId' => 'required|exists:products,id',
             'warehouse_id' => 'required|exists:warehouses,id',
             'stock' => 'required|integer|min:1'
         ];

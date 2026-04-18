@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class MerchantRequest extends FormRequest
@@ -12,7 +12,7 @@ class MerchantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,11 @@ class MerchantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255|unique:warehouses,name' . $this->route('warehouse'),
+            'photo' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:15',
+            'keeper_id' => 'required|exists:users,id',
         ];
     }
 }

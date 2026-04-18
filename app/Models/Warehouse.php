@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Storage;
 class Warehouse extends Model
 {
     //
- use SoftDeletes;
+    use SoftDeletes;
     protected $fillable = [
         'name',
-        'addrerss',
+        'address',
         'photo',
         'phone'
     ];
@@ -20,21 +20,18 @@ class Warehouse extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class,'warehouse_products')
-        ->withPivot('stock')
-        ->withTimestamps();
+        return $this->belongsToMany(Product::class, 'warehouse_products')
+            ->withPivot('stock')
+            ->withTimestamps();
     }
 
 
-        public function getPhotoAttribute($value)
+    public function getPhotoAttribute($value)
     {
         if (!$value) {
             return null;
         }
 
         return url(Storage::url($value));
-
     }
-
-
 }

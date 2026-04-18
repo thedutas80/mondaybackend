@@ -22,19 +22,19 @@ class WarehouseController extends Controller
 
     public function index()
     {
-        $fields = ['id', 'name', 'photo'];
+        $fields = ['id', 'name', 'photo', 'phone'];
         $warehouses = $this->warehouseService->getAll($fields ?: ['*']);
         return response()->json(WarehouseResource::collection($warehouses));
     }
 
     public function show($id)
     {
-        try{
-        $fields = ['id', 'name', 'photo', ];
-        $warehouse = $this->warehouseService->getById($id, $fields);
-        return response()->json(new WarehouseResource($warehouse));
-       } catch (ModelNotFoundException $e) {
-        return response()->json(['message' => 'Warehouse not found'], 404);
+        try {
+            $fields = ['id', 'name', 'photo', 'phone'];
+            $warehouse = $this->warehouseService->getById($id, $fields);
+            return response()->json(new WarehouseResource($warehouse));
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'Warehouse not found'], 404);
         }
     }
 
@@ -54,7 +54,7 @@ class WarehouseController extends Controller
             return response()->json(['message' => 'Warehouse not found'], 404);
         }
     }
-    
+
     public function destroy($id)
     {
         try {
