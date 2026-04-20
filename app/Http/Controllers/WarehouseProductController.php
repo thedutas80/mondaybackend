@@ -35,15 +35,29 @@ class WarehouseProductController extends Controller
     }
 
 
-    public function detach(Request $request, int $warehouseId): JsonResponse
-    {
-        $request->validate([
-            'product_id' => 'required|integer|exists:products,id',
-        ]);
 
+    // public function detach(Request $request, int $warehouseId): JsonResponse
+    // {
+    //     $request->validate([
+    //         'product_id' => 'required|integer|exists:products,id,',
+    //     ]);
+
+    //     $this->warehouseService->detachProduct(
+    //         $warehouseId,
+    //         $request->input('product_id')
+    //     );
+
+    //     return response()->json([
+    //         'message' => 'Product detached from warehouse successfully.'
+    //     ]);
+    // }
+
+
+    public function detach(int $warehouseId, int $productId): JsonResponse
+    {
         $this->warehouseService->detachProduct(
             $warehouseId,
-            $request->input('product_id')
+            $productId
         );
 
         return response()->json([

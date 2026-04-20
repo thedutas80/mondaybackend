@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class WarehouseProductRequest extends FormRequest
@@ -24,6 +24,7 @@ class WarehouseProductRequest extends FormRequest
     {
         return [
             'stock' => 'required|integer|min:1',
+            'product_id' => 'required|integer|exists:products,id,',
         ];
     }
 }
