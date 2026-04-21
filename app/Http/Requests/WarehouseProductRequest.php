@@ -24,7 +24,7 @@ class WarehouseProductRequest extends FormRequest
     {
         return [
             'stock' => 'required|integer|min:1',
-            'product_id' => 'required|integer|exists:products,id,',
+            'product_id' => 'required|integer|exists:products,id',
         ];
     }
 }

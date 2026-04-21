@@ -65,7 +65,7 @@ class WarehouseProductController extends Controller
         ]);
     }
 
-    public function updateStock(WarehouseProductRequest $request, int $warehouseId): JsonResponse
+    public function update(WarehouseProductRequest $request, int $warehouseId): JsonResponse
     {
         $request->validate([
             'product_id' => 'required|integer|exists:products,id',

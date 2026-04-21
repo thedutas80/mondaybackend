@@ -82,7 +82,7 @@ class WarehouseService
         $warehouse->products()->updateExistingPivot($productId, ['stock' => $stock]);
 
 
-        return $warehouse->products()->where('product_id', $productId)->first;
+        return $warehouse->products()->where('product_id', $productId)->first();
     }
 
 
@@ -99,8 +99,4 @@ class WarehouseService
             Storage::disk('public')->delete($relativePath);
         }
     }
-
-
-
-
 }
