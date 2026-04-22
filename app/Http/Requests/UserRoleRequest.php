@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRoleRequest extends FormRequest
@@ -23,9 +22,8 @@ class UserRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-            ['userId' => 'required|integer|exists:users,id'],
-            ['roleId' => 'required|integer|exists:roles,id'],   
+            'user_id' => 'required|integer|exists:users,id',
+            'role_id' => 'required|integer|exists:roles,id',
         ];
     }
 }

@@ -20,15 +20,15 @@ class RoleController extends Controller
 
     public function index()
     {
-        
-        $fields = ['id', 'name' ];
+
+        $fields = ['id', 'name'];
         $role = $this->roleService->getAll($fields ?: ['*']);
         return response()->json(RoleResource::collection($role));
     }
 
     public function show($id)
     {
-        $fields = ['id', 'name' ];
+        $fields = ['id', 'name'];
         $role = $this->roleService->getById($id, $fields ?: ['*']);
         return response()->json(new RoleResource($role));
     }
@@ -49,7 +49,5 @@ class RoleController extends Controller
     {
         $this->roleService->delete($id);
         return response()->json(null, 204);
-    }   
-
-    
+    }
 }

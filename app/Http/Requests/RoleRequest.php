@@ -25,7 +25,7 @@ class RoleRequest extends FormRequest
         return [
             //.
 
-            'name' => 'required|string|max:255|unique:roles,name' . $this->route('role')  ];
+            'name' => 'required|string|max:255|unique:roles,name,' . $this->route('role')
+        ];
     }
-
 }

@@ -14,7 +14,7 @@ class UserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-    //  return parent::toArray($request);
+        //  return parent::toArray($request);
 
         return [
             'id' => $this->id,
@@ -23,7 +23,8 @@ class UserResource extends JsonResource
             'phone' => $this->phone,
             'roles' => $this->roles->pluck('name'),
             'photo' => $this->photo ? asset('storage/' . $this->photo) : null,
-            'merchants' =>new MerchantResource($this->merchants),
+            //'merchants' =>new MerchantResource($this->merchants),
+            'merchants' => $this->merchants ? new MerchantResource($this->merchants) : null,
         ];
     }
 }

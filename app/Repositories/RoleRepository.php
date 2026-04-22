@@ -23,7 +23,7 @@ class RoleRepository
     {
         return Role::create([
             'name' => $data['name'],
-            'guard_name' => ['web']
+            'guard_name' => 'web'
         ]);
     }
 
@@ -34,10 +34,9 @@ class RoleRepository
         return $role;
     }
 
-        public function delete(int $id)
+    public function delete(int $id)
     {
         $role = Role::findOrFail($id);
         $role->delete();
     }
-
 }

@@ -10,7 +10,7 @@ use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
-     private $userService;
+    private $userService;
 
     public function __construct(UserService $userService)
     {
@@ -19,29 +19,33 @@ class UserController extends Controller
 
     public function index()
     {
-        $fields = [      
-         'name',
-        'email',
-        'password',
-        'phone',
-        'photo'];
+        $fields = [
+            'id',
+            'name',
+            'email',
+            'password',
+            'phone',
+            'photo'
+        ];
         $users = $this->userService->getAll($fields ?: ['*']);
         return response()->json(UserResource::collection($users));
     }
 
     public function show($id)
     {
-       try{
-        $fields = [      
-         'name',
-        'email',
-        'password',
-        'phone',
-        'photo'];
-        $user = $this->userService->getById($id, $fields);
-        return response()->json(new UserResource($user));
-       } catch (ModelNotFoundException $e) {
-        return response()->json(['message' => 'User not found'], 404);
+        try {
+            $fields = [
+                'id',
+                'name',
+                'email',
+                'password',
+                'phone',
+                'photo'
+            ];
+            $user = $this->userService->getById($id, $fields);
+            return response()->json(new UserResource($user));
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => 'User not found'], 404);
         }
     }
 
@@ -51,7 +55,7 @@ class UserController extends Controller
         $user = $this->userService->create($data);
         return response()->json(new UserResource($user), 201);
     }
-    
+
     public function update(UserRequest $request, $id)
     {
         try {
@@ -61,7 +65,7 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
     }
-    
+
     public function destroy($id)
     {
         try {
@@ -71,5 +75,4 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
     }
-
 }
