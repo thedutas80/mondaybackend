@@ -11,19 +11,20 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('token-login', [AuthController::class, 'tokenLogin']); // untuk testing di Postman
+//Route::post('token-login', [AuthController::class, 'tokenLogin']); // untuk testing di Postman
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 
+
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('user', [AuthController::class, 'user']);
+    Route::get('logout', [AuthController::class, 'logout']);
+    Route::get('user', [AuthController::class, 'user']);
 });
 
 
@@ -36,7 +37,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware(['auth:sanctum', 'role:manager'])->group(function () {
 
-
+    Route::apiResource('transactions', TransactionController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('roles', RoleController::class);
     Route::post('users/roles', [UserRoleController::class, 'assignrole']);

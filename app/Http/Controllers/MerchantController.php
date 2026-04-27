@@ -22,7 +22,7 @@ class MerchantController extends Controller
 
     public function index()
     {
-        $fields = ['id', 'name', 'photo', 'address', 'keeper_id'];
+        $fields = ['id', 'name', 'photo', 'address', 'phone', 'keeper_id'];
         $categories = $this->MerchantService->getAll($fields ?: ['*']);
         return response()->json(MerchantResource::collection($categories));
     }
@@ -30,7 +30,7 @@ class MerchantController extends Controller
     public function show($id)
     {
         try {
-            $fields = ['id', 'name', 'photo', 'address', 'keeper_id'];
+            $fields = ['id', 'name', 'photo', 'address', 'phone', 'keeper_id'];
             $Merchant = $this->MerchantService->getById($id, $fields);
             return response()->json(new MerchantResource($Merchant));
         } catch (ModelNotFoundException $e) {
