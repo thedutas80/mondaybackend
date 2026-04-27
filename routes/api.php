@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('token-login', [AuthController::class, 'tokenLogin']);
+Route::post('token-login', [AuthController::class, 'tokenLogin']); // untuk testing di Postman
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
