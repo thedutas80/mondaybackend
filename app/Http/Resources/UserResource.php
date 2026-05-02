@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'roles' => $this->roles->pluck('name'),
-            'photo' => $this->photo ? asset('storage/' . $this->photo) : null,
+            'photo' => $this->photo ? asset($this->photo) : null,
             //'merchants' =>new MerchantResource($this->merchants),
             'merchants' => $this->merchants ? new MerchantResource($this->merchants) : null,
         ];
